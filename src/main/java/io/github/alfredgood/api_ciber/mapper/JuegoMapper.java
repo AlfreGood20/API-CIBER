@@ -13,10 +13,15 @@ import io.github.alfredgood.api_ciber.modelo.dto.response.JuegoDTO;
 @Mapper(componentModel = "spring")
 public interface JuegoMapper {
 
-    @Mapping(target = "plataforma",source = "plataforma")
-    Juego toEntity(JuegoCreateDTO creacion,Plataforma plataforma);
 
+   @Mapping(target = "disponible", ignore = true)
+    @Mapping(target = "precioRenta", ignore = true)
+    @Mapping(target = "plataforma", source = "plataformaSeleccionada")
+    Juego toEntity(JuegoCreateDTO creacion, Plataforma plataformaSeleccionada);
+
+    @Mapping(target = "plataforma",expression = "java(juego.getPlataforma() != null ? juego.getPlataforma.getNombre : null)")
     JuegoDTO toDTO(Juego juego);
 
     List<JuegoDTO> toListDTO(List<Juego> juegos);
+
 }
