@@ -1,5 +1,22 @@
 package io.github.alfredgood.api_ciber.mapper;
 
-public class JuegoMapper {
+import java.util.List;
 
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import io.github.alfredgood.api_ciber.modelo.Entitys.Juego;
+import io.github.alfredgood.api_ciber.modelo.Entitys.Plataforma;
+import io.github.alfredgood.api_ciber.modelo.dto.create.JuegoCreateDTO;
+import io.github.alfredgood.api_ciber.modelo.dto.response.JuegoDTO;
+
+@Mapper(componentModel = "spring")
+public interface JuegoMapper {
+
+    @Mapping(target = "plataforma",source = "plataforma")
+    Juego toEntity(JuegoCreateDTO creacion,Plataforma plataforma);
+
+    JuegoDTO toDTO(Juego juego);
+
+    List<JuegoDTO> toListDTO(List<Juego> juegos);
 }
