@@ -11,9 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
 
 @RestController
 @RequestMapping("/api/v1")
@@ -31,7 +28,7 @@ public class PlataformaControlador {
     }
 
     @GetMapping("/plataformas")
-    public ResponseEntity<List<PlataformaDTO>> obtenerTodos(@RequestParam String param) {
+    public ResponseEntity<List<PlataformaDTO>> obtenerTodos() {
         return ResponseEntity.ok().body(servicio.listaPlataformas());
     }
     
