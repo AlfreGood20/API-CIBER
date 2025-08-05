@@ -12,7 +12,7 @@ import io.github.alfredgood.api_ciber.modelo.dto.response.PlataformaDTO;
 @Mapper(componentModel = "spring")
 public interface PlataformaMapper {
 
-    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "id",ignore = true)
     Plataforma toEntity(PlataformaCreateDTO create);
 
     PlataformaDTO tDTO(Plataforma plataforma);
