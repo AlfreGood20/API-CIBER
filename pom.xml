@@ -64,18 +64,13 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>  <!-- ESTA DEPENDECIA PERIMITE USAR EL MAPPER  -->
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct</artifactId>
-			<version>1.5.5.Final</version>
-		</dependency>
-
-		<dependency>  <!-- ESTA DEPENDENCIA GENERA EL CODIGO EN TIEMPO DE COMPILACION  -->
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct-processor</artifactId>
-			<version>1.5.5.Final</version>
-			<scope>provided</scope>
-		</dependency>
+		
+		<!-- ESTA DEPENDECIA PERIMITE USAR EL MAPPER  -->
+		<dependency>
+      		<groupId>org.mapstruct</groupId>
+      		<artifactId>mapstruct</artifactId>
+      		<version>1.5.5.final</version>
+    	</dependency>
 
 	</dependencies>
 
@@ -86,16 +81,13 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 
-				<source>17</source> <!-- CHECAR  -->
-        		<target>17</target>
-
 					<annotationProcessorPaths>
 
- 						<path>  <!-- CHECAR  -->
+ 						<path>  <!-- GENERA LAS ANOTACIONES EN TIEMPO DE EJECUCCION IMPORTANTE USARLO SI NO HABRA PROBLEMAS  -->
         					<groupId>org.mapstruct</groupId>
         					<artifactId>mapstruct-processor</artifactId>
         					<version>1.5.5.Final</version>
-      					</path> <!-- CHECAR -->
+      					</path> 
 
 						<path>
 							<groupId>org.projectlombok</groupId>
