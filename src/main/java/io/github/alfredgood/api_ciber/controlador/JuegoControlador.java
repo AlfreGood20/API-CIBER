@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
 @RestController
 @RequestMapping("/api/v1")
 public class JuegoControlador {
@@ -42,6 +43,12 @@ public class JuegoControlador {
 
     @DeleteMapping("/juego/{id}")
     public ResponseEntity<?> eliminarPorId(long id){
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/juegos/plataforma/{id}")
+    public ResponseEntity<List<JuegoDTO>> juegosPorPlataforma(@PathVariable long id) {
+        return ResponseEntity.ok().body(servicio.obtenerPorIdPlataforma(id));
+    }
+    
 }

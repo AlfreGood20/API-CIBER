@@ -1,4 +1,6 @@
 package io.github.alfredgood.api_ciber.modelo.Entitys;
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,4 +20,7 @@ public class Plataforma {
 
     @Column(nullable = false,unique = true)
     private String nombre;
+
+    @OneToMany(mappedBy = "plataforma")
+    private List<Juego>juegos;
 }

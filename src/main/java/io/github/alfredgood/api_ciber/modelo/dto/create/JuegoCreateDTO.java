@@ -1,4 +1,5 @@
 package io.github.alfredgood.api_ciber.modelo.dto.create;
+import jakarta.persistence.JoinColumn;
 import jakarta.validation.constraints.*;
 
 public record JuegoCreateDTO(
@@ -10,6 +11,7 @@ public record JuegoCreateDTO(
     int stack,
 
 @DecimalMin(value = "0.0", inclusive = false, message = "El precio de venta debe ser mayor a 0")
+@JoinColumn(name = "precio_venta")
     double precioVenta,
 
     boolean vendible,

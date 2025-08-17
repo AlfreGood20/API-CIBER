@@ -1,6 +1,7 @@
 package io.github.alfredgood.api_ciber.servicio;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,18 @@ public class JuegoServ {
     public void eliminarPorId(long id){
         Juego encontrado=juegoRepo.findById(id).orElseThrow(()-> new RecursoNoEncontradoException("Juego id "+id+" no encontrado")); 
         juegoRepo.delete(encontrado);
+    }
+
+    public List<JuegoDTO>obtenerPorIdPlataforma(long id){
+
+        if(!plataformaRepo.existsById(id)){
+            throw new RecursoNoEncontradoException("Plataforma id " + id + " no encontrado");
+        }
+
+        return plataformaRepo.findById(id)
+            .stream()
+            .flatMap(p -> p.getJuegos().stream())
+            .map(j -> mapper.toDTO(j))
+            .collect(Collectors.toList());
     }
 }

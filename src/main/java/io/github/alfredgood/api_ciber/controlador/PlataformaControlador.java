@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -31,5 +33,10 @@ public class PlataformaControlador {
     public ResponseEntity<List<PlataformaDTO>> obtenerTodos() {
         return ResponseEntity.ok().body(servicio.listaPlataformas());
     }
-    
+
+    @DeleteMapping("/plataforma/{id}")
+    public ResponseEntity<?>eliminarPorId(@PathVariable long id){
+        return ResponseEntity.noContent().build();
+    }
+
 }

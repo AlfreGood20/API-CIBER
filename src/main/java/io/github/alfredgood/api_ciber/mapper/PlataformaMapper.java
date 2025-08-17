@@ -13,9 +13,11 @@ import io.github.alfredgood.api_ciber.modelo.dto.response.PlataformaDTO;
 public interface PlataformaMapper {
 
     @Mapping(target = "id",ignore = true)
+    @Mapping(target = "juegos",ignore = true)
     Plataforma toEntity(PlataformaCreateDTO create);
 
     PlataformaDTO tDTO(Plataforma plataforma);
 
     List<PlataformaDTO> toListDTO(List<Plataforma>plataformas);
+
 }

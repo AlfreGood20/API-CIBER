@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import io.github.alfredgood.api_ciber.excepciones.RecursoNoEncontradoException;
 import io.github.alfredgood.api_ciber.mapper.PlataformaMapper;
 import io.github.alfredgood.api_ciber.modelo.Entitys.Plataforma;
 import io.github.alfredgood.api_ciber.modelo.dto.create.PlataformaCreateDTO;
@@ -29,5 +30,10 @@ public class PlataformaServ {
 
     public List<PlataformaDTO> listaPlataformas(){
         return mapper.toListDTO(repositorio.findAll());
+    }
+
+    public void eliminarPorId(long id){
+        Plataforma plataforma=repositorio.findById(id).orElseThrow(()-> new RecursoNoEncontradoException("Plataforma con id "+id+" no encontrado"));
+        repositorio.delete(plataforma);
     }
 }
