@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import io.github.alfredgood.api_ciber.modelo.dto.create.ClienteCreateDTO;
 import io.github.alfredgood.api_ciber.modelo.dto.response.ClienteDTO;
 import io.github.alfredgood.api_ciber.servicio.ClienteServ;
+import jakarta.validation.Valid;
+
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,7 @@ public class ClienteControlador {
     }
 
     @PostMapping("/cliente")
-    public ResponseEntity<ClienteDTO> nuevo(@RequestBody ClienteCreateDTO create) {
+    public ResponseEntity<ClienteDTO> nuevo(@Valid @RequestBody ClienteCreateDTO create) {
         return new ResponseEntity<ClienteDTO>(clienteServicio.crear(create),HttpStatus.CREATED);
     }
 
