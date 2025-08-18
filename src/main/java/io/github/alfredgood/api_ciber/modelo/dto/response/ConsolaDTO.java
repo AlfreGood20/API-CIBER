@@ -1,15 +1,20 @@
 package io.github.alfredgood.api_ciber.modelo.dto.response;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Builder
 public record ConsolaDTO(
 
     long id,
+
     String generacion,
+
+    @JsonProperty("precio_renta")
     double precioRenta,
+
     int stack,
+
     boolean disponible,
+    
     String plataforma
 ) {
 }

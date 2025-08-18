@@ -2,19 +2,18 @@ package io.github.alfredgood.api_ciber.modelo.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-public record ClienteDTO(
+public record UtilidadDTO(
 
     long id,
-    
+
     String nombre,
 
-    String apellidos,
+    int stack,
 
-    @JsonProperty("numero_telefonico")
-    String numeroTelefonico,
+    double precio,
 
-    String direccion
+    @JsonProperty("fecha_registro")
+    String fechaRegistro
 ) {
 
 }
