@@ -15,6 +15,7 @@ public class Consola {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = true)
     private String generacion;
 
     @Column(name = "precio_renta")
