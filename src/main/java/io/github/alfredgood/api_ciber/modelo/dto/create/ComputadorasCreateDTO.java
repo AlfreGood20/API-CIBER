@@ -3,6 +3,7 @@ package io.github.alfredgood.api_ciber.modelo.dto.create;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record ComputadorasCreateDTO(
+    
     String marca,
 
     String procesador,
@@ -11,9 +12,8 @@ public record ComputadorasCreateDTO(
     String cantidadDeRam,
 
     @JsonProperty("tarjeta_video")
-    String tarjetaDeVideo,
+    String tarjetaDeVideo
 
-    boolean disponible
 ) {
 
 }
