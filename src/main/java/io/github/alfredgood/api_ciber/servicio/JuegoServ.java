@@ -32,7 +32,6 @@ public class JuegoServ {
 
         Juego juego=mapper.toEntity(creacion, plataforma);
         juegoRepo.save(juego);
-
         return mapper.toDTO(juego);
     }
 
