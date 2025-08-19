@@ -43,6 +43,7 @@ public class JuegoControlador {
 
     @DeleteMapping("/juego/{id}")
     public ResponseEntity<?> eliminarPorId(long id){
+        servicio.eliminarPorId(id);
         return ResponseEntity.noContent().build();
     }
 
