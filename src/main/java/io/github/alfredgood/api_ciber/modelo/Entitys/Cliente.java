@@ -1,4 +1,9 @@
 package io.github.alfredgood.api_ciber.modelo.Entitys;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,4 +31,11 @@ public class Cliente {
 
     @Column(nullable = false)
     private String direccion;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime fechaRegistro;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Prestamo> prestamos;
 }
