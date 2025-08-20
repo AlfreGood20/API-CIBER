@@ -14,7 +14,10 @@ public record ClienteDTO(
     @JsonProperty("numero_telefonico")
     String numeroTelefonico,
 
-    String direccion
+    String direccion,
+
+    @JsonProperty("fecha_registro")
+    String fechaRegistro
 ) {
 
 }
