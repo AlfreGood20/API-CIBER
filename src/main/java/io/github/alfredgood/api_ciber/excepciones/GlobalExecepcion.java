@@ -3,6 +3,9 @@ package io.github.alfredgood.api_ciber.excepciones;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -62,12 +65,38 @@ public class GlobalExecepcion {
         ErrorResponder respuesta = ErrorResponder.builder()
                 .timestamp(LocalDateTime.now())
                 .status(400)
-                .error("Cuerpo de la petición no válido")
+                .error("Cuerpo de la solicitud invalida")
                 .menssage("El cuerpo de la solicitud está vacío o mal formado.")
                 .url(request.getRequestURI())
                 .build();
 
         return ResponseEntity.badRequest().body(respuesta);
+    }
+    
+    @ExceptionHandler(RecursoNoDisponible.class)
+    public ResponseEntity<?> manejarRecursoNoDisponible(RecursoNoDisponible ex, HttpServletRequest request){
+        ErrorResponder respuesta= ErrorResponder.builder()
+            .timestamp(LocalDateTime.now())
+            .status(409)
+            .error("Recurso no disponible")
+            .menssage(ex.getMessage())
+            .url(request.getRequestURI())
+            .build();
+        
+        return new ResponseEntity<>(respuesta, HttpStatus.CONFLICT);
+    }
+    
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<?> manejarErrorDuplicado(DataIntegrityViolationException ex, HttpServletRequest request){
+        ErrorResponder repuesta= ErrorResponder.builder()
+            .timestamp(LocalDateTime.now())
+            .status(409)
+            .error("Duplicado")
+            .menssage("Error estas duplicando dato ya regsitrado")
+            .url(request.getRequestURI())
+            .build();
+        return new ResponseEntity<>(repuesta, HttpStatus.CONFLICT);
     }
 
 }
