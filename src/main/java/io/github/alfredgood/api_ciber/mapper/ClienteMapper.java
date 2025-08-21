@@ -13,6 +13,8 @@ import io.github.alfredgood.api_ciber.modelo.dto.response.ClienteDTO;
 public interface ClienteMapper {
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "fechaRegistro", ignore = true)
+    @Mapping(target = "prestamos", ignore = true)
     Cliente toEntity(ClienteCreateDTO create);
 
     ClienteDTO toDTO(Cliente cliente);
