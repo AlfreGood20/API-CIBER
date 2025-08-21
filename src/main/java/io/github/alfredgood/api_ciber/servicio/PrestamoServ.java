@@ -59,7 +59,7 @@ public class PrestamoServ {
                     .orElseThrow(()-> new RecursoNoEncontradoException("Consola con id "+productoId+" no encontrado"));
                 
                 if(!consola.isDisponible()){
-                    new RecursoNoDisponible("Consola no disponible, se encuentra ocupada");
+                    throw new RecursoNoDisponible("Consola no disponible, se encuentra ocupada");
                 }
 
                 consola.setDisponible(true);
@@ -71,7 +71,7 @@ public class PrestamoServ {
                     .orElseThrow(()-> new RecursoNoEncontradoException("Computadora con id "+productoId+" no encontrado"));
                 
                 if(!computadora.isDisponible()){
-                    new RecursoNoDisponible("Computadora no disponible, se encuentra ocupada");
+                    throw new RecursoNoDisponible("Computadora no disponible, se encuentra ocupada");
                 }
 
                 computadora.setDisponible(false);
@@ -82,8 +82,8 @@ public class PrestamoServ {
                 Juego juego= juegoRepo.findById(productoId)
                     .orElseThrow(()-> new RecursoNoEncontradoException("Juego con id "+productoId+" no encontrado"));
 
-                if(!juego.isDisponible()){
-                    new RecursoNoDisponible("No hay juego en stock");
+                if(!juego.isDisponible() || juego.getStack()<=0){
+                   throw  new RecursoNoDisponible("No hay juego en stock");
                 }
 
                 juego.setStack(juego.getStack()-1);
