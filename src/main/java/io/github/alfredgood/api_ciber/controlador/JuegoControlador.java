@@ -42,7 +42,7 @@ public class JuegoControlador {
     }
 
     @DeleteMapping("/juego/{id}")
-    public ResponseEntity<?> eliminarPorId(long id){
+    public ResponseEntity<?> eliminarPorId(@PathVariable long id){
         servicio.eliminarPorId(id);
         return ResponseEntity.noContent().build();
     }
