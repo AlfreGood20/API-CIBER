@@ -11,9 +11,9 @@ import jakarta.validation.constraints.NotNull;
 
 public record PrestamoCreateDTO(
 
-    @NotNull(message = "Fecha devolver es obligatoria")
+    @NotNull(message = "Fecha devolver es obligatoria y con el formato yyyy/MM/dd")
     @JsonProperty("fecha_devolver")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy/MM/dd")
     LocalDate fechaDevolver,
 
     @NotNull(message = "El tipo de producto es obligatorio")
