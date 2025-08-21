@@ -15,6 +15,8 @@ public record PrestamoDTO(
     @JsonProperty("tipo")
     String tipoProducto,
 
+    boolean devuelto,
+
     ClienteDTO cliente
 ) {
 }

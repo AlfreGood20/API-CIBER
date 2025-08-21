@@ -1,9 +1,7 @@
 package io.github.alfredgood.api_ciber.servicio;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import io.github.alfredgood.api_ciber.excepciones.RecursoNoDisponible;
 import io.github.alfredgood.api_ciber.excepciones.RecursoNoEncontradoException;
 import io.github.alfredgood.api_ciber.mapper.PrestamoMapper;
@@ -97,16 +95,14 @@ public class PrestamoServ {
         return mapper.toDTO(prestamo);
     }
 
-    
 
     public List<PrestamoDTO> listaCompleta(){
         return mapper.toListDTO(prestamoRepo.findAll());
     }
 
 
-
     @Transactional
-    public void devolver(long id){
+    public PrestamoDTO devolver(long id){
         Prestamo prestamo= prestamoRepo.findById(id)
             .orElseThrow(()-> new RecursoNoEncontradoException("Prestamo id "+id+" no encontrado"));
         
@@ -137,5 +133,12 @@ public class PrestamoServ {
 
         prestamo.setDevuelto(true);
         prestamoRepo.save(prestamo);
+
+        return mapper.toDTO(prestamo);
+    }
+
+    public void eliminarPorId(long id){
+        Prestamo prestamo=prestamoRepo.findById(id).orElseThrow(()-> new RecursoNoEncontradoException("Prestamo id "+id+" no encontrado"));
+        prestamoRepo.delete(prestamo);
     }
 }

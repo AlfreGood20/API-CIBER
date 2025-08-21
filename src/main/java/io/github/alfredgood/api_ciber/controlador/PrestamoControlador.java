@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,12 +38,15 @@ public class PrestamoControlador {
         return ResponseEntity.ok().body(servicio.listaCompleta());
     }
 
-    @PatchMapping("/prestamo/{id}")
-    public ResponseEntity<Void> devolverPrestamo (@PathVariable long id){
-        servicio.devolver(id);
+    @PatchMapping("/prestamo/{id}/devolucion")
+    public ResponseEntity<PrestamoDTO> devolverPrestamo (@PathVariable long id){
+        return ResponseEntity.ok().body(servicio.devolver(id));
+    }
+
+    @DeleteMapping("/prestamo/{id}")
+    public ResponseEntity<Void> eliminarPRestamoPorId(@PathVariable long id){
+        servicio.eliminarPorId(id);
         return ResponseEntity.noContent().build();
     }
     
-    
-
 }
