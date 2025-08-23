@@ -60,7 +60,7 @@ public class PrestamoServ {
                     throw new RecursoNoDisponible("Consola no disponible, se encuentra ocupada");
                 }
 
-                consola.setDisponible(true);
+                consola.setDisponible(false);
                 consolaRepo.save(consola);
                 break;
 
@@ -87,6 +87,9 @@ public class PrestamoServ {
                 juego.setStack(juego.getStack()-1);
                 juegoRepo.save(juego);
                 break;
+
+            case UTILIDAD:
+                throw new RecursoNoDisponible("Producto tipo utilidad no se puede prestar");
         }
 
         Prestamo prestamo=mapper.toEntity(create, cliente);
@@ -129,6 +132,8 @@ public class PrestamoServ {
                 juego.setStack(juego.getStack()+1);
                 juegoRepo.save(juego);
                 break;
+            case UTILIDAD:
+                throw new RecursoNoDisponible("Producto tipo utilidad no se puede prestar");
         }
 
         prestamo.setDevuelto(true);
@@ -139,6 +144,29 @@ public class PrestamoServ {
 
     public void eliminarPorId(long id){
         Prestamo prestamo=prestamoRepo.findById(id).orElseThrow(()-> new RecursoNoEncontradoException("Prestamo id "+id+" no encontrado"));
+
+        if(!prestamo.isDevuelto()){
+            throw new RecursoNoDisponible("El producto no se ha devuelto");
+        }
+
         prestamoRepo.delete(prestamo);
+    }
+
+    public List<PrestamoDTO> listaNoDevueltos(){
+        List<Prestamo> prestamos=prestamoRepo.findAll()
+            .stream()
+            .filter(p -> !p.isDevuelto())
+            .toList();
+
+        return mapper.toListDTO(prestamos);
+    }
+
+    public List<PrestamoDTO> listaDevueltos(){
+        List<Prestamo> prestamos=prestamoRepo.findAll()
+            .stream()
+            .filter(p -> p.isDevuelto())
+            .toList();
+        
+        return mapper.toListDTO(prestamos);
     }
 }
