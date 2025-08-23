@@ -22,7 +22,7 @@ public class UtilidadServ{
         this.mapper=mapper;
     }
 
-    public UtilidadDTO crear(UtilidadCreateDTO create) {
+    public UtilidadDTO nuevo(UtilidadCreateDTO create) {
         Utilidad utilidad=mapper.toEntity(create);
         utilidadRepo.save(utilidad);
         return mapper.toDTO(utilidad);
