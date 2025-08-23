@@ -48,5 +48,16 @@ public class PrestamoControlador {
         servicio.eliminarPorId(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/prestamos/no/devueltos")
+    public ResponseEntity<List<PrestamoDTO>> prestamosNoDevueltos() {
+        return ResponseEntity.ok().body(servicio.listaNoDevueltos());
+    }
+
+    @GetMapping("/prestamos/devueltos")
+    public ResponseEntity<List<PrestamoDTO>> prestamosDevueltos() {
+        return ResponseEntity.ok().body(servicio.listaDevueltos());
+    }
+    
     
 }
