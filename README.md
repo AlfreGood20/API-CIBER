@@ -65,7 +65,8 @@ git clone https://github.com/AlfreGood20/API-CIBER.git
 <h2>Deseas distribuir algo</h2>
 
 ```git
-git brach -b modificar
+git branch nombre rama
+git checkout nombre rama cambiar
 git push origin modificar
 ````
 
