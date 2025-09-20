@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import io.github.alfredgood.api_ciber.excepciones.RecursoNoEncontradoException;
+import io.github.alfredgood.api_ciber.excepciones.SolicitudIncorrecta;
 import io.github.alfredgood.api_ciber.mapper.UtilidadMapper;
 import io.github.alfredgood.api_ciber.modelo.Entitys.Utilidad;
 import io.github.alfredgood.api_ciber.modelo.dto.create.UtilidadCreateDTO;
 import io.github.alfredgood.api_ciber.modelo.dto.response.UtilidadDTO;
 import io.github.alfredgood.api_ciber.repositorio.UtilidadRepo;
+import jakarta.transaction.Transactional;
 
 @Service
 public class UtilidadServ{
@@ -45,5 +47,17 @@ public class UtilidadServ{
         utilidadRepo.delete(utilidad);
     }
 
-    
+    @Transactional
+    public UtilidadDTO reabastecer(long id, int cantidad){
+        Utilidad utilidad=utilidadRepo.findById(id).orElseThrow(()-> new RecursoNoEncontradoException("Utilidad "+id+" no encontrado"));
+
+        if(cantidad<0){
+            throw new SolicitudIncorrecta("No se puede ingresar la cantidad menor a 0");
+        }
+
+        cantidad+=utilidad.getStack();
+        utilidad.setStack(cantidad);
+        utilidadRepo.save(utilidad);
+        return mapper.toDTO(utilidad);
+    }
 }

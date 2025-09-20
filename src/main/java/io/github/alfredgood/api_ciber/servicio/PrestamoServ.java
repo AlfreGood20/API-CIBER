@@ -40,6 +40,13 @@ public class PrestamoServ {
         this.computadoraRepo = computadoraRepo;
     }
 
+    public PrestamoDTO obtenerPorId(long id){
+        Prestamo prestamo= prestamoRepo.findById(id)
+            .orElseThrow(()-> new RecursoNoEncontradoException("Prestamo id "+id+" no encontrado"));
+
+        return mapper.toDTO(prestamo);
+    }
+
     @Transactional
     public PrestamoDTO nuevo(PrestamoCreateDTO create){
 

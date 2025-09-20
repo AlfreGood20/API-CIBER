@@ -29,7 +29,6 @@ public class JuegoServ {
 
     public JuegoDTO crear(JuegoCreateDTO creacion){
         Plataforma plataforma=plataformaRepo.findById(creacion.plataforma_id()).orElseThrow(()->new RecursoNoEncontradoException("Plataforma id "+creacion.plataforma_id()+" no encontrado"));
-
         Juego juego=mapper.toEntity(creacion, plataforma);
         juegoRepo.save(juego);
         return mapper.toDTO(juego);

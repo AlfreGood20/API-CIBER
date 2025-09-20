@@ -99,4 +99,16 @@ public class GlobalExecepcion {
         return new ResponseEntity<>(repuesta, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(SolicitudIncorrecta.class)
+    public ResponseEntity<?> manejarSolicitudIncorrectas(SolicitudIncorrecta ex, HttpServletRequest request){
+        ErrorResponder repuesta= ErrorResponder.builder()
+            .timestamp(LocalDateTime.now())
+            .status(400)
+            .error("Solicitud Incorrecta")
+            .menssage(ex.getMessage())
+            .url(request.getRequestURI())
+            .build();
+        return new ResponseEntity<>(repuesta, HttpStatus.BAD_REQUEST);
+    }
+
 }
