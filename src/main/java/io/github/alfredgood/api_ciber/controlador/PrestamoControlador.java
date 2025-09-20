@@ -27,7 +27,6 @@ public class PrestamoControlador {
         this.servicio = servicio;
     }
     
-
     @PostMapping("/prestamo")
     public ResponseEntity<PrestamoDTO> nuevoPrestamo(@Valid @RequestBody PrestamoCreateDTO create) {
         return new ResponseEntity<PrestamoDTO>(servicio.nuevo(create), HttpStatus.CREATED);
@@ -38,7 +37,12 @@ public class PrestamoControlador {
         return ResponseEntity.ok().body(servicio.listaCompleta());
     }
 
-    @PatchMapping("/prestamo/{id}/devolucion")
+    @GetMapping("/prestamo/{id}")
+    public ResponseEntity<PrestamoDTO> getMethodName(@PathVariable long id) {
+        return ResponseEntity.ok().body(servicio.obtenerPorId(id));
+    }
+
+    @PatchMapping("/prestamo/{id}/devolver")
     public ResponseEntity<PrestamoDTO> devolverPrestamo (@PathVariable long id){
         return ResponseEntity.ok().body(servicio.devolver(id));
     }
@@ -58,6 +62,4 @@ public class PrestamoControlador {
     public ResponseEntity<List<PrestamoDTO>> prestamosDevueltos() {
         return ResponseEntity.ok().body(servicio.listaDevueltos());
     }
-    
-    
 }
