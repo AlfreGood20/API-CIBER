@@ -12,7 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -32,5 +34,11 @@ public class ClienteControlador {
     @GetMapping("/clientes")
     public ResponseEntity<List<ClienteDTO>> listado() {
         return ResponseEntity.ok().body(clienteServicio.listaClientes());
-    }  
+    } 
+
+    @DeleteMapping("/cliente/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable long id){
+        clienteServicio.eliminarPorId(id);
+        return ResponseEntity.noContent().build();
+    }
 }
