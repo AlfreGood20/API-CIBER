@@ -90,7 +90,7 @@
 
 					<annotationProcessorPaths>
 
- 						<path>  <!-- GENERA LAS ANOTACIONES EN TIEMPO DE EJECUCCION IMPORTANTE USARLO SI NO HABRA PROBLEMAS  -->
+ 						<path>  <!-- GENERA LAS ANOTACIONES EN TIEMPO DE EJECUCCION IMPORTANTE USARLO SI, NO HABRA PROBLEMAS  -->
         					<groupId>org.mapstruct</groupId>
         					<artifactId>mapstruct-processor</artifactId>
         					<version>1.6.3</version>

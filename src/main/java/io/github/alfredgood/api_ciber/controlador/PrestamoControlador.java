@@ -38,7 +38,7 @@ public class PrestamoControlador {
     }
 
     @GetMapping("/prestamo/{id}")
-    public ResponseEntity<PrestamoDTO> getMethodName(@PathVariable long id) {
+    public ResponseEntity<PrestamoDTO> buscarPorId(@PathVariable long id) {
         return ResponseEntity.ok().body(servicio.obtenerPorId(id));
     }
 
