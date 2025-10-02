@@ -64,7 +64,7 @@ public class PrestamoServ {
                     .orElseThrow(()-> new RecursoNoEncontradoException("Consola con id "+productoId+" no encontrado"));
                 
                 if(!consola.isDisponible()){
-                    throw new RecursoNoDisponible("Consola no disponible, se encuentra ocupada");
+                    throw new RecursoNoDisponible("Consolas disponibles, se encuentran ocupadas");
                 }
 
                 if(consola.getStack()<=0){
@@ -76,7 +76,7 @@ public class PrestamoServ {
                 if(consola.getStack()<=0){
                     consola.setDisponible(false);
                 }
-                
+
                 consolaRepo.save(consola);
                 break;
 
