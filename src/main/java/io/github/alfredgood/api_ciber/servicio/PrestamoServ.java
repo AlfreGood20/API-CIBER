@@ -67,7 +67,16 @@ public class PrestamoServ {
                     throw new RecursoNoDisponible("Consola no disponible, se encuentra ocupada");
                 }
 
-                consola.setDisponible(false);
+                if(consola.getStack()<=0){
+                    throw new RecursoNoDisponible("No hay consolas disponible");
+                }
+
+                consola.setStack(consola.getStack()-1);
+
+                if(consola.getStack()<=0){
+                    consola.setDisponible(false);
+                }
+                
                 consolaRepo.save(consola);
                 break;
 
