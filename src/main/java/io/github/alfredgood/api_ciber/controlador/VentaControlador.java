@@ -8,6 +8,7 @@ import io.github.alfredgood.api_ciber.modelo.dto.create.VentaCreateDTO;
 import io.github.alfredgood.api_ciber.modelo.dto.response.VentaDTO;
 import io.github.alfredgood.api_ciber.modelo.enumerado.EstadoVenta;
 import io.github.alfredgood.api_ciber.servicio.VentaServ;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "Venta", description = "Acciones que se pueden hacer en venta")
 public class VentaControlador {
 
     private final VentaServ servicio;
@@ -48,9 +50,9 @@ public class VentaControlador {
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping("/venta/{id}/estado")
-    public ResponseEntity<VentaDTO> actualizarEstadoVenta(@PathVariable long id, @RequestParam EstadoVenta cambiar){
-        return ResponseEntity.ok().body(servicio.actualizarEstado(id, cambiar));
+    @PatchMapping("/venta/{id}/")
+    public ResponseEntity<VentaDTO> actualizarEstadoVenta(@PathVariable long id, @RequestParam EstadoVenta estado){
+        return ResponseEntity.ok().body(servicio.actualizarEstado(id, estado));
     }
 
     @GetMapping("/ventas/canceladas")
