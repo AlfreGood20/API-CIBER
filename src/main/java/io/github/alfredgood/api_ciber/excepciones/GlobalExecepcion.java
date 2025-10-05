@@ -26,7 +26,7 @@ public class GlobalExecepcion {
                 .menssage(ex.getMessage())
                 .url(request.getRequestURI()).build();
 
-        return ResponseEntity.badRequest().body(respuesta);
+        return new ResponseEntity<>(respuesta,HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
