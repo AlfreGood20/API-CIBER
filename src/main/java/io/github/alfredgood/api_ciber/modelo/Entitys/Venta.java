@@ -37,14 +37,15 @@ public class Venta {
     @Column(name = "producto_id", nullable = false)
     private long productoId;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private EstadoVenta estado;
+    private EstadoVenta estado=EstadoVenta.VENDIDO;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_pago", nullable = false)
     private TipoDePago tipoPago;
 
-    @Column(name = "codigo_venta", updatable = false)
+    @Column(name = "codigo_venta", nullable = true)
     private String codigoVenta;
 
     @Column(nullable = false)
@@ -73,6 +74,5 @@ public class Venta {
     @PreUpdate
     private void datosAutomaticos(){
         this.total=precioUnitario*cantidad;
-        this.estado=EstadoVenta.VENDIDO;
     }
 }
