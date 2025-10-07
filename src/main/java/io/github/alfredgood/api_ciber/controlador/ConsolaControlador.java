@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.github.alfredgood.api_ciber.modelo.dto.create.ConsolaCreateDTO;
 import io.github.alfredgood.api_ciber.modelo.dto.response.ConsolaDTO;
 import io.github.alfredgood.api_ciber.servicio.ConsolaServ;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "Consola")
 public class ConsolaControlador {
 
     private final ConsolaServ servicio;

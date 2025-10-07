@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.github.alfredgood.api_ciber.modelo.dto.create.UtilidadCreateDTO;
 import io.github.alfredgood.api_ciber.modelo.dto.response.UtilidadDTO;
 import io.github.alfredgood.api_ciber.servicio.UtilidadServ;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "Utilidad")
 public class UtilidadControlador {
 
     private final UtilidadServ servicio;
@@ -43,7 +45,7 @@ public class UtilidadControlador {
     }
     
     @GetMapping("/utilidades")
-    public ResponseEntity<List<UtilidadDTO>> listado(@RequestParam String param) {
+    public ResponseEntity<List<UtilidadDTO>> listado() {
         return ResponseEntity.ok().body(servicio.lista());
     }
 

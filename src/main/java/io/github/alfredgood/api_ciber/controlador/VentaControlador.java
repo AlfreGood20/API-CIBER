@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
-@Tag(name = "Venta", description = "Acciones que se pueden hacer en venta")
+@Tag(name = "Venta")
 public class VentaControlador {
 
     private final VentaServ servicio;

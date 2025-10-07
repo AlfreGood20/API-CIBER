@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.github.alfredgood.api_ciber.modelo.dto.create.ClienteCreateDTO;
 import io.github.alfredgood.api_ciber.modelo.dto.response.ClienteDTO;
 import io.github.alfredgood.api_ciber.servicio.ClienteServ;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "Cliente")
 public class ClienteControlador {
 
     private final ClienteServ clienteServicio;

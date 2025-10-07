@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import io.github.alfredgood.api_ciber.modelo.dto.create.PlataformaCreateDTO;
 import io.github.alfredgood.api_ciber.modelo.dto.response.PlataformaDTO;
 import io.github.alfredgood.api_ciber.servicio.PlataformaServ;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "Plataforma")
 public class PlataformaControlador {
 
     private final PlataformaServ servicio;

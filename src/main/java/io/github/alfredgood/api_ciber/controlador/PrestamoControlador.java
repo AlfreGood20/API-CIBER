@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.github.alfredgood.api_ciber.modelo.dto.create.PrestamoCreateDTO;
 import io.github.alfredgood.api_ciber.modelo.dto.response.PrestamoDTO;
 import io.github.alfredgood.api_ciber.servicio.PrestamoServ;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "Prestamo")
 public class PrestamoControlador {
 
     private final PrestamoServ servicio;

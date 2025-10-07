@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.github.alfredgood.api_ciber.modelo.dto.create.JuegoCreateDTO;
 import io.github.alfredgood.api_ciber.modelo.dto.response.JuegoDTO;
 import io.github.alfredgood.api_ciber.servicio.JuegoServ;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "Juego")
 public class JuegoControlador {
 
     private final JuegoServ servicio;
